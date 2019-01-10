@@ -18,6 +18,15 @@
             {{odd}}
           </li>
         </div>
+        <div *appUnless="isOdd">
+          <li class="list-group-item"
+           *ngFor="let even of evenNumber"
+           [ngClass]="{oddStyling: even % 2 !== 0}"
+           [ngStyle]="{backgroundColor: even % 2 !== 0 ? 'pink' : 'transparent'}">
+              {{even}}
+          </li>
+        </div> 
+        <!--
         <div *ngIf="!isOdd">
           <li class="list-group-item"
            *ngFor="let even of evenNumber"
@@ -25,12 +34,37 @@
            [ngStyle]="{backgroundColor: even % 2 !== 0 ? 'pink' : 'transparent'}">
               {{even}}
           </li>
-        </div>
+        </div> -->
+        <!-- <ng-template [ngIf]="!isOdd">
+          <div>
+            <li class="list-group-item"
+             *ngFor="let even of evenNumber"
+             [ngClass]="{oddStyling: even % 2 !== 0}"
+             [ngStyle]="{backgroundColor: even % 2 !== 0 ? 'pink' : 'transparent'}">
+                {{even}}
+            </li>
+          </div>
+        </ng-template> -->
+       
       </ul>
+
+
       <p appBasicHighlight> Adding my own basic highlight style</p>
       <p> Adding my own style</p>
-      <p appBetterHighlight> Adding my own better highlight style</p>
+      <p appBetterHighlight [defaultColor]="'pink'" [highLightColor]="'gray'"> Adding my own better highlight style</p>
+      <!-- //when the same directive name is used as an alias  -->
+      <!-- <p [appBetterHighlight]="'gray'" [defaultColor]="'pink'"> Adding my own better highlight style</p> -->
+    
+      <!-- Short cut -->
+      <!-- <p [appBetterHighlight]="'gray'" defaultColor='pink'> Adding my own better highlight style</p> -->
 
+      <div [ngSwitch]="value">
+          <p *ngSwitchCase="5"> Value is 5 </p>
+          <p *ngSwitchCase="10"> Value is 10 </p>
+          <p *ngSwitchCase="15"> Value is 15 </p>
+          <p *ngSwitchCase="20"> Value is 20 </p>
+          <p *ngSwitchDefault> Value is 25 </p>
+      </div>
     </div>
   </div>
 </div>
